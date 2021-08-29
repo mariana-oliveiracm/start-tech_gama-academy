@@ -1,0 +1,13 @@
+body{
+  padding: 10vh;
+  background-image: linear-gradient(to right, rgba(128, 0, 128, 0.6) , rgba(255, 166, 0, 0.6))
+}
+
+.form-select{
+  width: 40vh !important;
+}
+
+.input{
+  width: 40vh !important;
+  margin-bottom: 1vh;
+}
