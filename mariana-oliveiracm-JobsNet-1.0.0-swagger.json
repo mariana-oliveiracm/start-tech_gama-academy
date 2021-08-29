@@ -1,0 +1,275 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Documentação API JobsNet - Gama Academy\n",
+    "version" : "1.0.0",
+    "title" : "JobsNet API",
+    "contact" : {
+      "email" : "mariana.oliveiracm@gmail.com"
+    }
+  },
+  "tags" : [ {
+    "name" : "jobsnet"
+  } ],
+  "paths" : {
+    "/jobsnet/api/v1/getApplications" : {
+      "get" : {
+        "tags" : [ "jobsnet" ],
+        "summary" : "Recupera todas as aplicações existentes",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "Retorna registros",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/retornoRegistros"
+              }
+            }
+          },
+          "404" : {
+            "description" : "Nenhum registro encontrado",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/retornoBase"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobsnet/api/v1/getCEP" : {
+      "post" : {
+        "tags" : [ "jobsnet" ],
+        "summary" : "Consulta o CEP",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Cep a ser consultado",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/CEP"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Retorna registros",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/retornoCep"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobsnet/api/v1/setApplication" : {
+      "post" : {
+        "tags" : [ "jobsnet" ],
+        "summary" : "Entrada de uma job application",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Dados do candidato",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/dadosCandidato"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Registro criado com sucesso",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/retornoBase"
+              }
+            }
+          },
+          "406" : {
+            "description" : "Os campos CPF, Nome, Data de Nascimento, Cep, Logradouro, Numero, Bairro, Cidade, Email, Cargo e Celular são obrigatórios",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/retornoBase"
+              }
+            }
+          },
+          "409" : {
+            "description" : "Usuário já cadastrado",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/retornoBase"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "retornoRegistros" : {
+      "type" : "object",
+      "properties" : {
+        "nome" : {
+          "type" : "string"
+        },
+        "cargo" : {
+          "type" : "string"
+        },
+        "dataNascimento" : {
+          "type" : "string"
+        },
+        "estadoCivil" : {
+          "type" : "string"
+        },
+        "sexo" : {
+          "type" : "string"
+        },
+        "endereco" : {
+          "type" : "string"
+        },
+        "telefone1" : {
+          "type" : "string"
+        },
+        "telefone2" : {
+          "type" : "string"
+        },
+        "celular" : {
+          "type" : "string"
+        },
+        "contato" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "identidade" : {
+          "type" : "string"
+        },
+        "cpf" : {
+          "type" : "string"
+        },
+        "possuiVeiculo" : {
+          "type" : "string"
+        },
+        "habilitacao" : {
+          "type" : "string"
+        }
+      }
+    },
+    "retornoBase" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "type" : "string"
+        }
+      }
+    },
+    "CEP" : {
+      "type" : "object",
+      "properties" : {
+        "cep" : {
+          "type" : "string"
+        }
+      }
+    },
+    "retornoCep" : {
+      "type" : "object",
+      "properties" : {
+        "cep" : {
+          "type" : "string"
+        },
+        "logradouro" : {
+          "type" : "string"
+        },
+        "bairro" : {
+          "type" : "string"
+        },
+        "localidade" : {
+          "type" : "string"
+        }
+      }
+    },
+    "dadosCandidato" : {
+      "type" : "object",
+      "properties" : {
+        "nome" : {
+          "type" : "string"
+        },
+        "cargo" : {
+          "type" : "string"
+        },
+        "dataNascimento" : {
+          "type" : "string"
+        },
+        "estadoCivil" : {
+          "type" : "string"
+        },
+        "sexo" : {
+          "type" : "string"
+        },
+        "cep" : {
+          "type" : "string"
+        },
+        "logradouro" : {
+          "type" : "string"
+        },
+        "numero" : {
+          "type" : "string"
+        },
+        "complemento" : {
+          "type" : "string"
+        },
+        "bairro" : {
+          "type" : "string"
+        },
+        "cidade" : {
+          "type" : "string"
+        },
+        "telefone1" : {
+          "type" : "string"
+        },
+        "telefone2" : {
+          "type" : "string"
+        },
+        "celular" : {
+          "type" : "string"
+        },
+        "contato" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "identidade" : {
+          "type" : "string"
+        },
+        "cpf" : {
+          "type" : "string"
+        },
+        "possuiVeiculo" : {
+          "type" : "string"
+        },
+        "habilitacao" : {
+          "type" : "string"
+        }
+      }
+    }
+  },
+  "externalDocs" : {
+    "description" : "Find out more about Swagger",
+    "url" : "http://swagger.io"
+  },
+  "host" : "virtserver.swaggerhub.com",
+  "basePath" : "/mariana-oliveiracm/JobsNet/1.0.0",
+  "schemes" : [ "https", "http" ]
+}
